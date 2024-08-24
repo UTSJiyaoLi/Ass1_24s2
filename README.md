@@ -8,6 +8,71 @@
     data_df = pd.read_csv('/path/to/Project1Data.csv')
     data_dict_df = pd.read_excel('/path/to/Data_Dictionary_Project1.xlsx')
     ```
+    The columns are:
+    | Column Name                                      |
+    |--------------------------------------------------|
+    | CustomerID                                       |
+    | Has_Transaction_Nov23_May24                      |
+    | Total_Spent_Nov23_May24                          |
+    | Total_Spent_1M                                   |
+    | Transaction_Count_1M                             |
+    | Total_Spent_3M                                   |
+    | Transaction_Count_3M                             |
+    | Total_Spent_6M                                   |
+    | Transaction_Count_6M                             |
+    | Total_Spent_9M                                   |
+    | Transaction_Count_9M                             |
+    | Total_Spent_12M                                  |
+    | Transaction_Count_12M                            |
+    | Total_Spent_AllTime                              |
+    | Transaction_Count_AllTime                        |
+    | Brand Description_Anthelios                      |
+    | Brand Description_Bundle                         |
+    | Brand Description_Cicaplast                      |
+    | Brand Description_Eau Thermale                   |
+    | Brand Description_Effaclar                       |
+    | Brand Description_Hyalu B5                       |
+    | Brand Description_Lipikar                        |
+    | Brand Description_Niacinamide                    |
+    | Brand Description_Retinol LRP                    |
+    | Brand Description_Serozinc                       |
+    | Brand Description_Toleriane                      |
+    | Brand Description_Uvidea                         |
+    | Brand Description_Vitamin C                      |
+    | Class Description_Anti-Acne                      |
+    | Class Description_Anti-Ageing                    |
+    | Class Description_Body Care                      |
+    | Class Description_Bundle                         |
+    | Class Description_Face Care                      |
+    | Category_Body Care                               |
+    | Category_Face Care                               |
+    | Category_Face Care                               |
+    | Category_Sun Care                                |
+    | Sub-Category_Body Moisturiser                    |
+    | Sub-Category_Body Wash                           |
+    | Sub-Category_Eye Cream                           |
+    | Sub-Category_Face Cleanser                       |
+    | Sub-Category_Face Mask                           |
+    | Sub-Category_Face Moisturiser                    |
+    | Sub-Category_Face Serum                          |
+    | Sub-Category_Sunscreen                           |
+    | Sub-Category_Tinted Sunscreen                    |
+    | Sub-Category_Toner & Mist                        |
+    | Skin Concern_Acne-Prone Skin                     |
+    | Skin Concern_Anti-Ageing                         |
+    | Skin Concern_Irritation-Prone Skin               |
+    | Skin Concern_Pigmentation and Dark Spots         |
+    | Skin Concern_Sun Protection                      |
+    | EAN_TolerianeMoisturiser40ml                     |
+    | EAN_HyaluB5Serum30ml                             |
+    | EAN_EffaclarMoisturiser40ml                      |
+    | EAN_VitaminC10Serum30ml                          |
+    | EAN_RetinolB3Serum30ml                           |
+    | EAN_EffaclarSerum30ml                            |
+    | EAN_AntheliosInvisibleSunscreen50ml              |
+    | EAN_Pure10NiacinamideSerum                       |
+    | EAN_CicaplastB5BaumeBothSKUs40ml                 |
+
 
 2. **Data Cleaning**:
     - After loading the data, we removed columns that were marked as "Remove" in the data dictionary. These columns were deemed unnecessary or irrelevant for our analysis, so they were excluded from the dataset.
@@ -46,45 +111,8 @@
 
         return top_correlations
     ```
-![Correlation Heatmap](correlation_heatmap.png "Correlation Heatmap")
+![Correlation Heatmap](face_serum_box.png "Correlation Heatmap")
+### Feature A: ```Sub-Category_Face Serum```
 
-| Feature                    | Coefficient Value |
-|----------------------------|-------------------|
-| Total_Spent_AllTime         | 0.152893          |
-| Total_Spent_6M              | 0.120919          |
-| Total_Spent_12M             | 0.113293          |
-| Total_Spent_9M              | 0.082908          |
-| Sub-Category_Face Serum     | -0.058319         |
-| Transaction_Count_12M       | -0.072238         |
-| Skin Concern_Anti-Ageing    | -0.166256         |
-| Category_Face Care          | -0.637993         |
-| Transaction_Count_AllTime   | -7.606607         |
-| Transaction_Count_9M        | -15.968261        |
 
-## Selection of Statistical or Machine Learning Approaches
-
-### Linear Regression
-
-| Metric                      | Value               |
-|-----------------------------|---------------------|
-| Mean Squared Error (MSE)    | 13753.678141520708  |
-| Root Mean Squared Error (RMSE) | 117.27607659501876 |
-| R-squared (R²)              | 0.19067284401098894 |
-
-![Actual vs Predicted](actual_vs_predicted.png "Actual vs Predicted Transaction Value")
-
-Given that the linear regression model is not adequately capturing the relationship between the features and the target variable, we should consider more sophisticated models that might perform better. Two common alternatives in such scenarios are:
-
-### Ridge Regression
-This is a regularized version of linear regression that introduces a penalty on the size of the coefficients to prevent overfitting. Ridge regression is particularly useful when there is multicollinearity among the features, as it can improve model generalization.
-
-> Ridge Regression RMSE: 117.27541028450636
-
-![Ridge RegressionActual vs Predicted](ridge_actual_vs_predicted.png "Ridge Regression Actual vs Predicted Transaction Value")
-
-The two plots for the Linear Regression and Ridge Regression models look almost identical because Ridge Regression is a regularized version of Linear Regression. When the regularization (controlled by the `alpha` parameter) is not too strong, Ridge Regression produces results similar to Linear Regression. Here are some key points to consider:
-
-**Similar Model Behavior**:
-- **Linear Regression**: It minimizes the sum of squared residuals between the observed and predicted values.
-- **Ridge Regression**: It also minimizes the sum of squared residuals but adds a penalty term proportional to the sum of the squared coefficients (L2 regularization). This penalty term helps prevent overfitting by shrinking the coefficients.
 
